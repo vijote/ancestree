@@ -1,4 +1,4 @@
-name: learn-github-actions
+name: deploy-to-github-pages
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
@@ -6,26 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-  setup-node:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-  
-  build-project:
-    runs-on: ubuntu-latest
-    steps:
+          
       - run: npm install
       - run: npm run build
       
-  deploy-to-github-pages:
-    runs-on: ubuntu-latest
-    steps:
+      - run: ls -a
+      
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.name }}
           path: ${{ runner.temp }}/build
           retention-days: ${{ inputs.retention-days }}
           if-no-files-found: error
+  
