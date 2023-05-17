@@ -2,17 +2,27 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  setup-environment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+  setup-node:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
+  
+  build-project:
+    runs-on: ubuntu-latest
+    steps:
       - run: npm install
       - run: npm run build
       
+  deploy-to-github-pages:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.name }}
