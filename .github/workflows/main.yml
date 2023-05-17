@@ -17,6 +17,7 @@ jobs:
       
       - uses: actions/upload-artifact@v3
         with:
+          name: github-pages
           path: ./build
           if-no-files-found: error
 
