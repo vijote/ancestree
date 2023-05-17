@@ -17,8 +17,6 @@ jobs:
       
       - uses: actions/upload-artifact@v3
         with:
-          name: dev-build
           path: ./build
-          retention-days: ${{ inputs.retention-days }}
           if-no-files-found: error
   
