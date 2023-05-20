@@ -1,7 +1,7 @@
 <!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <!-- <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> -->
-<div style="padding-top: 0px; display: inline-block;">
+<div>
 	<svg
 		fill="#000000"
 		version="1.1"

@@ -8,7 +8,7 @@
 		id="Capa_1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
-		width="160px"
+		width="200px"
 		height="160px"
 		stroke="#000"
 		stroke-width="5"
