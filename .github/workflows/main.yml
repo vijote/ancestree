@@ -1,5 +1,5 @@
 name: deploy-to-github-pages
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: Deploying main to Github Pages
 on: [push]
 jobs:
   build:
