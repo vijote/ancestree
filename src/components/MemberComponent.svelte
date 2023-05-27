@@ -1,12 +1,13 @@
 <script lang="ts">
-    import { MemberType } from "../types/types";
-    import Circle from "../icons/circle.svelte";
-    import Triangle from "../icons/triangle.svelte";
+    import Circle from "./icons/circle.svelte";
+    import Triangle from "./icons/triangle.svelte";
+    import { MemberType } from "../entities/Member";
 
     // Props
     export let type: MemberType = MemberType.Male;
     export let changeType: (evt: MouseEvent) => void;
     export let addToTheRight: (evt: MouseEvent) => void;
+    export let addParents: (evt: MouseEvent) => void;
 </script>
 
 <div class="member-container">
@@ -16,6 +17,7 @@
         <Circle />
     {/if}
     <div class="type-switch-container">
+        <button on:click={addParents} class="type-switch">Agregar padres</button>
         <button on:click={changeType} class="type-switch">Cambiar tipo</button>
         <button on:click={addToTheRight} class="type-switch">Agregar a la derecha</button>
     </div>

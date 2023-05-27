@@ -1,5 +1,5 @@
 <script>
-    import Tree from "../components/tree.svelte";
+    import TreeComponent from "../components/TreeComponent.svelte";
 
 </script>
 <svelte:head>
@@ -16,4 +16,4 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<Tree/>
+<TreeComponent/>
