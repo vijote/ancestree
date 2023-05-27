@@ -1,6 +1,10 @@
 <script lang="ts">
+    // Lifecycle methods
+    import { onDestroy } from "svelte";
+
     // Entities
     import Tree from "../entities/Tree";
+    import { zoom } from "../stores/zoomStore";
 
     // Svelte components
     import MemberComponent from "./MemberComponent.svelte";
@@ -8,16 +12,24 @@
     // State getter
     let tree = Tree.initializeTree();
 
+    // Store getter
+    let zoomValue: number;
+
+	const unsubscribe = zoom.subscribe(value => {
+		zoomValue = value;
+	});
+
+    onDestroy(unsubscribe);
+
     // State setter
     const setTree = (stateModifier: Function) => (_evt: MouseEvent) => {
-        stateModifier();
+        stateModifier();        
         tree = tree;
     };
 </script>
 
 <div class="container">
     {#each tree.levels as level}
-        {level.y}
         {#each [...level.children] as [_childKey, child]}
             <MemberComponent
                 changeType={setTree(child.changeType)}
@@ -28,6 +40,7 @@
                     tree.addLevelUpwards(child.x)
                 )}
                 type={child.type}
+                --icon-size={`${child.icon_size * (zoomValue / 100)}%`}
                 --y-coord={level.y}
                 --x-coord={child.formatted_x}
             />

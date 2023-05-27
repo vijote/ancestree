@@ -1,15 +1,9 @@
-<!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<!-- <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> -->
 <div>
 	<svg
-		fill="#000000"
+		class="triangle-icon"
 		version="1.1"
-		id="Capa_1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
-		width="200px"
-		height="200px"
 		viewBox="0 0 72.72 72.719"
 		xml:space="preserve"
 	>
@@ -22,3 +16,11 @@
 		</g>
 	</svg>
 </div>
+
+<style>
+	.triangle-icon {
+		width: var(--icon-size);
+		height: var(--icon-size);
+		fill: #000000;
+	}
+</style>

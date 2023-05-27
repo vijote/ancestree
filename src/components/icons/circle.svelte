@@ -1,17 +1,13 @@
 <!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <!-- <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> -->
-<div style="padding-top: 20px; display: inline-block;">
+<div>
 	<svg
 		fill="#000"
 		version="1.1"
-		id="Capa_1"
+		class="circle-icon"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
-		width="200px"
-		height="160px"
-		stroke="#000"
-		stroke-width="5"
 		viewBox="-5 -5 455.873 455.872"
 		xml:space="preserve"
 	>
@@ -27,3 +23,13 @@
 		</g>
 	</svg>
 </div>
+
+<style>
+	.circle-icon {
+		width: var(--icon-size);
+		height: var(--icon-size);
+		fill: #000000;
+		stroke: #000000;
+		stroke-width: 5;
+	}
+</style>

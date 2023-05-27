@@ -8,24 +8,26 @@
     export let changeType: (evt: MouseEvent) => void;
     export let addToTheRight: (evt: MouseEvent) => void;
     export let addParents: (evt: MouseEvent) => void;
+
+    const MemberDictionary = {
+        [MemberType.Male]: Triangle,
+        [MemberType.Female]: Circle
+    }
 </script>
 
-<div class="member-container">
-    {#if type === MemberType.Male}
-        <Triangle />
-    {:else}
-        <Circle />
-    {/if}
+<div class="member-container" tabindex="-1">
+    <svelte:component this={MemberDictionary[type]}/>
+
     <div class="type-switch-container">
-        <button on:click={addParents} class="type-switch">Agregar padres</button>
-        <button on:click={changeType} class="type-switch">Cambiar tipo</button>
-        <button on:click={addToTheRight} class="type-switch">Agregar a la derecha</button>
+        <button on:click={addParents} class="type-switch">P</button>
+        <button on:click={changeType} class="type-switch">G</button>
+        <button on:click={addToTheRight} class="type-switch">H</button>
     </div>
 </div>
 
 <style>
     .member-container {
-        height: 200px;
+        height: var(--icon-size);
         position: absolute;
         left: var(--x-coord);
         top: var(--y-coord);
