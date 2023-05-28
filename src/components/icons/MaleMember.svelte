@@ -19,8 +19,8 @@
 
 <style>
 	.triangle-icon {
-		width: var(--icon-size);
-		height: var(--icon-size);
+		width: 100%;
+		height: 100%;
 		fill: #000000;
 	}
 </style>

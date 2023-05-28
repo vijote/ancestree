@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Circle from "./icons/circle.svelte";
-    import Triangle from "./icons/triangle.svelte";
+    import FemaleIcon from "./icons/FemaleMember.svelte";
+    import MaleIcon from "./icons/MaleMember.svelte";
     import { MemberType } from "../entities/Member";
 
     // Props
@@ -10,8 +10,8 @@
     export let addParents: (evt: MouseEvent) => void;
 
     const MemberDictionary = {
-        [MemberType.Male]: Triangle,
-        [MemberType.Female]: Circle
+        [MemberType.Male]: MaleIcon,
+        [MemberType.Female]: FemaleIcon
     }
 </script>
 
@@ -28,6 +28,7 @@
 <style>
     .member-container {
         height: var(--icon-size);
+        width: var(--icon-size);
         position: absolute;
         left: var(--x-coord);
         top: var(--y-coord);
@@ -41,10 +42,6 @@
         all: unset;
         cursor: pointer;
 
-        margin-top: auto;
-        margin-left: auto;
-        margin-right: 0.5rem;
-        margin-bottom: 0.5rem;
         padding: 0.5rem;
         background-color: aquamarine;
     }
@@ -55,10 +52,9 @@
 
     .member-container:hover > .type-switch-container {
         display: flex;
-        flex-direction: column;
-        height: 100%;
         position: absolute;
-        top: 0%;
+        justify-content: space-between;
+        top: -30%;
         left: 0%;
         right: 0%;
     }
