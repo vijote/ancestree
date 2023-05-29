@@ -1,49 +1,62 @@
 import type Member from "./Member";
 import type { UUID } from "../types";
+import type Union from "./Union";
 
 export type LevelConstructorOptions = {
     height?: number,
-    children: Member[]
+    children: Member[],
+    unions?: Union[]
 }
 
 class Level {
-    public id: UUID;
     private _height: number = 0;
+
+    public readonly id: UUID;
+    public readonly members: Map<UUID, Member>;
+    public readonly unions: Union[] = [];
+    
     public y: string = "0%";
-    public readonly children: Map<UUID, Member>;
 
-    get height() {
-        return this._height;
-    }
-
-    constructor(options: LevelConstructorOptions) {        
+    constructor(options: LevelConstructorOptions) {
         if(options.height) {
             this._height = options.height;
             this.y = `${this._height * 35}%`;
         }
 
+        if(options.unions) {
+            this.unions = options.unions;
+        }
+
         this.id = crypto.randomUUID();
-        this.children = this.formatChildren(options.children);
+        this.members = this.formatMembers(options.children);
     }
 
-    private formatChildren(children: Member[]) {
-        const formattedChildren: [UUID, Member][] = [];
+    get height() {
+        return this._height;
+    }
 
-        children.forEach(child => {
-            child.setLevelId(this.id);
-            formattedChildren.push([child.id, child]);
+    private formatMembers(members: Member[]) {
+        const formattedMembers: [UUID, Member][] = [];
+
+        members.forEach(member => {
+            member.setLevel(this);
+            formattedMembers.push([member.id, member]);
         });
 
-        return new Map(formattedChildren);
+        return new Map(formattedMembers);
     }
 
-    addChildToTheRight = (newAncestor: Member) => () => {
-        this.children.set(crypto.randomUUID(), newAncestor)
+    addMember = (newMember: Member) => () => {        
+        this.members.set(crypto.randomUUID(), newMember)
     }
 
     setHeight(newHeight: number) {
         this._height = newHeight;
         this.y = `${this._height * 35}%`;
+    }
+
+    addUnion(newUnion: Union) {
+        this.unions.push(newUnion);
     }
 }
 
