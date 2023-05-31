@@ -1,5 +1,5 @@
 import type { UUID } from "../types";
-import type Level from "./Level";
+import type Generation from "./Generation";
 
 export enum MemberType {
     Male = 1,
@@ -8,7 +8,7 @@ export enum MemberType {
 
 type MemberConstructorOptions = {
     x: number,
-    level?: Level,
+    generation?: Generation,
     type?: MemberType
 }
 
@@ -16,7 +16,7 @@ class Member {
     public readonly id: UUID;
     public type: MemberType = MemberType.Male;
     public readonly formatted_x: string;
-    public level?: Level;
+    public generation?: Generation;
     public static readonly icon_size = 20;
     public static readonly margin = 10;
 
@@ -27,7 +27,7 @@ class Member {
         this.x = options.x;
         this.id = crypto.randomUUID();        
 
-        if(options.level !== undefined) this.level = options.level;
+        if(options.generation !== undefined) this.generation = options.generation;
         if(options.type !== undefined) this.type = options.type;
     }
 
@@ -38,12 +38,12 @@ class Member {
     buildSiblingToTheRight = () => {
         return new Member({
             x: this.x + 35,
-            level: this.level
+            generation: this.generation
         });
     };
 
-    setLevel = (newLevel: Level) => {
-        this.level = newLevel;
+    setGeneration = (newGeneration: Generation) => {
+        this.generation = newGeneration;
     }
 }
 

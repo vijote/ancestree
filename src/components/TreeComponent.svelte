@@ -33,29 +33,29 @@
 </script>
 
 <div class="container">
-    {#each tree.levels as level}
+    {#each tree.generations as generation}
         <!-- Unions -->
-        {#each level.unions as union}
+        {#each generation.unions as union}
             {union.startingPoint} - {union.endingPoint}
             <UnionComponent
                 type={union.type}
-                --y-coord={`${((level.height + 1) * Member.icon_size) + Member.margin + 2.5}%`}
+                --y-coord={`${((generation.height + 1) * Member.icon_size) + Member.margin + 2.5}%`}
                 --starting-point={union.startingPoint}
                 --ending-point={union.endingPoint}
             />
         {/each}
 
         <!-- Members -->
-        {#each [...level.members] as [_key, member]}
+        {#each [...generation.members] as [_key, member]}
             <MemberComponent
                 changeType={setTree(member.changeType)}
                 addToTheRight={setTree(
-                    level.addMember(member.buildSiblingToTheRight())
+                    generation.addMember(member.buildSiblingToTheRight())
                 )}
                 addParents={setTree(tree.addParents(member))}
                 type={member.type}
                 --icon-size={`${Member.icon_size * (zoomValue / 100)}%`}
-                --y-coord={level.y}
+                --y-coord={generation.y}
                 --x-coord={member.formatted_x}
             />
         {/each}

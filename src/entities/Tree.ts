@@ -1,73 +1,72 @@
 import type { UUID } from "../types";
-import Level from "./Level";
+import Generation from "./Generation";
 import Member, { MemberType } from "./Member";
-import Union, { UnionType } from "./Union";
+import Union from "./Union";
 
 type TreeConstructorOptions = {
-    levels: Level[]
+    generations: Generation[]
 }
 
 class Tree {
     id: UUID;
-    public levels: Level[];
+    public generations: Generation[];
 
     constructor(options: TreeConstructorOptions) {
         this.id = crypto.randomUUID();
-        this.levels = options.levels;
+        this.generations = options.generations;
     }
 
     static initializeTree() {
-        const level = new Level({
+        const generation = new Generation({
             children: [new Member({ x: 25 })],
         });
 
         return new Tree({
-            levels: [level],
+            generations: [generation],
         });
     }
 
     addParents = (member: Member) => () => {
-        if (!member.level) return;
+        if (!member.generation) return;
 
-        if (this.levels.length < member.level.height) {
-            // TODO: Implement logic to handle existing level
+        if (this.generations.length < member.generation.height) {
+            // TODO: Implement logic to handle existing generation
             throw new Error("Not implemented yet!");
         }
 
-        const newLevel = this.addLevelUpwards(member.level.height);        
+        const newGeneration = this.addGenerationUpwards(member.generation.height);        
 
         const father = new Member({
             x: member.x - Math.round(Member.icon_size / 2),
-            level: newLevel,
+            generation: newGeneration,
             type: MemberType.Male
         });
 
         const mother = new Member({
             x: member.x + Math.round(member.x / 2),
-            level: newLevel,
+            generation: newGeneration,
             type: MemberType.Female
         });
 
-        newLevel.addMember(father)();
-        newLevel.addMember(mother)();
+        newGeneration.addMember(father)();
+        newGeneration.addMember(mother)();
 
-        newLevel.addUnion(new Union({
+        newGeneration.addUnion(new Union({
             father,
-            mother,
-            level: newLevel
+            mother
         }));
     }
 
-    addLevelUpwards = (height: number) => {
-        const newLevel = new Level({
+    addGenerationUpwards = (height: number) => {
+        const newGeneration = new Generation({
             children: [],
             height
         })
 
-        this.levels.forEach(level => level.setHeight(level.height + 1));
-        this.levels.unshift(newLevel);
+        this.generations.forEach(generation => generation.setHeight(generation.height + 1));
+        this.generations.unshift(newGeneration);
 
-        return newLevel
+        return newGeneration
     }
 }
 

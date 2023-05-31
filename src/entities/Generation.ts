@@ -2,13 +2,13 @@ import type Member from "./Member";
 import type { UUID } from "../types";
 import type Union from "./Union";
 
-export type LevelConstructorOptions = {
+export type GenerationConstructorOptions = {
     height?: number,
     children: Member[],
     unions?: Union[]
 }
 
-class Level {
+class Generation {
     private _height: number = 0;
 
     public readonly id: UUID;
@@ -17,7 +17,7 @@ class Level {
     
     public y: string = "0%";
 
-    constructor(options: LevelConstructorOptions) {
+    constructor(options: GenerationConstructorOptions) {
         if(options.height) {
             this._height = options.height;
             this.y = `${this._height * 35}%`;
@@ -39,7 +39,7 @@ class Level {
         const formattedMembers: [UUID, Member][] = [];
 
         members.forEach(member => {
-            member.setLevel(this);
+            member.setGeneration(this);
             formattedMembers.push([member.id, member]);
         });
 
@@ -60,4 +60,4 @@ class Level {
     }
 }
 
-export default Level;
+export default Generation;
