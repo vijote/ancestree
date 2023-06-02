@@ -1,7 +1,7 @@
 <script>
     import TreeComponent from "../components/TreeComponent.svelte";
-
 </script>
+
 <svelte:head>
     <title>Digyvira | Construye tu arbol familiar</title>
     <meta
