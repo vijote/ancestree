@@ -1,4 +1,4 @@
-import { describe, expect, test, vitest } from 'vitest';
+import { afterEach, describe, expect, test, vitest } from 'vitest';
 import Generation from './Generation';
 import Member  from './Member';
 import type { UUID } from '../types';
@@ -15,6 +15,10 @@ describe('Generation', () => {
       generateId: mockedGenerateId
     }
   }
+
+  afterEach(() => {
+    vitest.clearAllMocks();
+  })
 
   describe("constructor", () => {
     test("generates id with provided dependency", () => {
@@ -78,5 +82,77 @@ describe('Generation', () => {
       expect(generation.height).toEqual(1);
       expect(generation.y).toEqual("35%");
     });
+  });
+
+  describe("height getter", () => {
+    test("returns private property height", () => {
+      const generation = new Generation({
+        children: [],
+        height: 24,
+        dependencies: provideTestDependencies()
+      });
+
+      expect(generation.height).toBe(24);
+    });
+  });
+
+  describe("addMember", () => {
+    test("adds a new member to its members array", () => {
+      const generation = new Generation({
+        children: [],
+        dependencies: provideTestDependencies(),
+      });
+
+      const newMember = new Member({
+        dependencies: provideTestDependencies(),
+        x: 0
+      });
+
+      generation.addMember(newMember)();      
+
+      expect(generation.members.get(newMember.id)).toEqual(newMember)
+    });
+  });
+
+  describe("setHeight", () => {
+    test("sets height and y", () => {
+      const generation = new Generation({
+        children: [],
+        dependencies: provideTestDependencies()
+      });
+
+      generation.setHeight(4);
+
+      expect(generation.height).toBe(4);
+      expect(generation.y).toBe( 4 * 35 + "%");
+    });
+  });
+
+  describe("addUnion", () => {
+    	test("adds new Union to the unions array", () => {
+        const generation = new Generation({
+          children: [],
+          dependencies: provideTestDependencies()
+        });
+
+        const father = new Member({
+          dependencies: provideTestDependencies(),
+          x: 0
+        });
+
+        const mother = new Member({
+          dependencies: provideTestDependencies(),
+          x: 1
+        });
+
+        const newUnion = new Union({
+          mother,
+          father
+        })
+
+        generation.addUnion(newUnion);
+
+        expect(generation.unions).toContain(newUnion);
+      });
   });
 });

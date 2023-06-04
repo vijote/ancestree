@@ -17,16 +17,16 @@ class Generation {
     public readonly id: UUID;
     public readonly members: Map<UUID, Member>;
     public readonly unions: Union[] = [];
-    
+
     public y: string = "0%";
 
     constructor(options: GenerationConstructorOptions) {
-        if(options.height) {
+        if (options.height) {
             this._height = options.height;
             this.y = `${this._height * 35}%`;
         }
 
-        if(options.unions) {
+        if (options.unions) {
             this.unions = options.unions;
         }
 
@@ -50,8 +50,8 @@ class Generation {
         return new Map(formattedMembers);
     }
 
-    addMember = (newMember: Member) => () => {        
-        this.members.set(crypto.randomUUID(), newMember)
+    addMember = (newMember: Member) => () => {
+        this.members.set(newMember.id, newMember)
     }
 
     setHeight(newHeight: number) {

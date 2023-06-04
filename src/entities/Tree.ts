@@ -33,14 +33,7 @@ class Tree {
     }
 
     addParents = (member: Member) => () => {
-        if (!member.generation) return;
-
-        if (this.generations.length < member.generation.height) {
-            // TODO: Implement logic to handle existing generation
-            throw new Error("Not implemented yet!");
-        }
-
-        const newGeneration = this.addGenerationUpwards(member.generation.height);        
+        const newGeneration = this.addGenerationUpwards(member.generation!.height);        
 
         const father = new Member({
             dependencies: this.dependencies,
@@ -54,7 +47,7 @@ class Tree {
             x: member.x + Math.round(member.x / 2),
             generation: newGeneration,
             type: MemberType.Female
-        });
+        });        
 
         newGeneration.addMember(father)();
         newGeneration.addMember(mother)();
