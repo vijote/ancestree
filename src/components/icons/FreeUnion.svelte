@@ -1,4 +1,4 @@
-<hr class="free-union">
+<hr class="free-union" data-testid="free-union-icon">
 
 <style>
     .free-union {

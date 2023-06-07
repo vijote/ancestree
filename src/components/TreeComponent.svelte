@@ -12,9 +12,10 @@
     // Svelte components
     import MemberComponent from "./MemberComponent.svelte";
     import UnionComponent from "./UnionComponent.svelte";
+    import { provideBrowserDependencies } from "../entities/Dependencies";
 
-    // State getter
-    let tree = Tree.initializeTree();
+    // State getter    
+    let tree: Tree = Tree.initializeTree(provideBrowserDependencies());
 
     // Store getter
     let zoomValue: number;

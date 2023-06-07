@@ -1,33 +1,37 @@
 import type Member from "./Member";
 import type { UUID } from "../types";
 import type Union from "./Union";
+import type { Dependencies } from "./Dependencies";
 
 export type GenerationConstructorOptions = {
     height?: number,
     children: Member[],
-    unions?: Union[]
+    unions?: Union[],
+    dependencies: Dependencies
 }
 
 class Generation {
     private _height: number = 0;
+    private dependencies: Dependencies;
 
     public readonly id: UUID;
     public readonly members: Map<UUID, Member>;
     public readonly unions: Union[] = [];
-    
+
     public y: string = "0%";
 
     constructor(options: GenerationConstructorOptions) {
-        if(options.height) {
+        if (options.height) {
             this._height = options.height;
             this.y = `${this._height * 35}%`;
         }
 
-        if(options.unions) {
+        if (options.unions) {
             this.unions = options.unions;
         }
 
-        this.id = crypto.randomUUID();
+        this.dependencies = options.dependencies;
+        this.id = this.dependencies.generateId();
         this.members = this.formatMembers(options.children);
     }
 
@@ -46,8 +50,8 @@ class Generation {
         return new Map(formattedMembers);
     }
 
-    addMember = (newMember: Member) => () => {        
-        this.members.set(crypto.randomUUID(), newMember)
+    addMember = (newMember: Member) => () => {
+        this.members.set(newMember.id, newMember)
     }
 
     setHeight(newHeight: number) {

@@ -1,1 +1,1 @@
-<hr>
+<hr data-testid="marriage-union-icon">

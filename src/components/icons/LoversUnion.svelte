@@ -1,1 +1,1 @@
-<hr>
+<hr data-testid="lovers-union-icon">

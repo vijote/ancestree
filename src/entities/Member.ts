@@ -1,4 +1,5 @@
 import type { UUID } from "../types";
+import type { Dependencies } from "./Dependencies";
 import type Generation from "./Generation";
 
 export enum MemberType {
@@ -9,7 +10,8 @@ export enum MemberType {
 type MemberConstructorOptions = {
     x: number,
     generation?: Generation,
-    type?: MemberType
+    type?: MemberType,
+    dependencies: Dependencies
 }
 
 class Member {
@@ -19,13 +21,15 @@ class Member {
     public generation?: Generation;
     public static readonly icon_size = 20;
     public static readonly margin = 10;
+    private dependencies: Dependencies;
 
     public readonly x: number;
 
     constructor(options: MemberConstructorOptions) {
         this.formatted_x = `${options.x}%`;
         this.x = options.x;
-        this.id = crypto.randomUUID();        
+        this.dependencies = options.dependencies;
+        this.id = this.dependencies.generateId();        
 
         if(options.generation !== undefined) this.generation = options.generation;
         if(options.type !== undefined) this.type = options.type;
@@ -37,6 +41,7 @@ class Member {
 
     buildSiblingToTheRight = () => {
         return new Member({
+            dependencies: this.dependencies,
             x: this.x + 35,
             generation: this.generation
         });
