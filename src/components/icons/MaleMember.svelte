@@ -6,7 +6,7 @@
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 72.72 72.719"
 		xml:space="preserve"
-		data-test-id="male-member-icon"
+		data-testid="male-member-icon"
 	>
 		<g>
 			<g>

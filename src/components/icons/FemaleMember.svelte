@@ -4,7 +4,7 @@
 <div>
 	<svg
 		fill="#000"
-		data-test-id="female-member-icon"
+		data-testid="female-member-icon"
 		version="1.1"
 		class="circle-icon"
 		xmlns="http://www.w3.org/2000/svg"

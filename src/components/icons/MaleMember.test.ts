@@ -5,9 +5,11 @@ import { describe, afterEach, test, expect } from 'vitest';
 describe('MaleMember', () => {
     afterEach(() => cleanup());
 
-    test('mounts', () => {
+    test('mounts', async () => {
         const { container } = render(MaleMember);
+        const icon = await screen.findByTestId("male-member-icon");
+
         expect(container).toBeTruthy();
-        screen.findByTestId("male-member-icon");
+        expect(icon).toBeTruthy();
     });
 });

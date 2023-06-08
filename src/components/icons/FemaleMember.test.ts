@@ -1,13 +1,13 @@
-import { cleanup, render, screen } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import FemaleMember from './FemaleMember.svelte';
-import { describe, afterEach, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest';
 
 describe('FemaleMember', () => {
-    afterEach(() => cleanup());
-
-    test('mounts', () => {
+    test('mounts', async () => {
         const { container } = render(FemaleMember);
+        const icon = await screen.findByTestId("female-member-icon");
+
         expect(container).toBeTruthy();
-        screen.findByTestId("female-member-icon");
+        expect(icon).toBeTruthy();
     });
 });

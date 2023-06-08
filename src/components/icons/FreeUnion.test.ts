@@ -5,9 +5,11 @@ import { describe, afterEach, test, expect } from 'vitest';
 describe('FreeUnion', () => {
     afterEach(() => cleanup());
 
-    test('mounts', () => {
+    test('mounts', async () => {
         const { container } = render(FreeUnion);
+        const icon = await screen.findByTestId("free-union-icon");
+        
         expect(container).toBeTruthy();
-        screen.findByTestId("free-union-icon");
+        expect(icon).toBeTruthy();
     });
 });

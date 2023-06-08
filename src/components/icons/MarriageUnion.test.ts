@@ -5,9 +5,11 @@ import { describe, afterEach, test, expect } from 'vitest';
 describe('MarriageUnion', () => {
     afterEach(() => cleanup());
 
-    test('mounts', () => {
+    test('mounts', async () => {
         const { container } = render(MarriageUnion);
+        const icon = await screen.findByTestId("marriage-union-icon");
+
         expect(container).toBeTruthy();
-        screen.findByTestId("marriage-union-icon");
+        expect(icon).toBeTruthy();
     });
 });

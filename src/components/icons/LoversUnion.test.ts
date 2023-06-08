@@ -5,9 +5,11 @@ import { describe, afterEach, test, expect } from 'vitest';
 describe('LoversUnion', () => {
     afterEach(() => cleanup());
 
-    test('mounts', () => {
+    test('mounts', async () => {
         const { container } = render(LoversUnion);
+        const icon = await screen.findByTestId("lovers-union-icon");
+        
         expect(container).toBeTruthy();
-        screen.findByTestId("lovers-union-icon");
+        expect(icon).toBeTruthy();
     });
 });
