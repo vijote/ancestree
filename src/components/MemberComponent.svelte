@@ -15,13 +15,13 @@
     }
 </script>
 
-<div class="member-container" tabindex="-1">
+<div class="member-container" data-testid="member" tabindex="-1">
     <svelte:component this={MemberDictionary[type]}/>
 
     <div class="type-switch-container">
-        <button on:click={addParents} class="type-switch">P</button>
-        <button on:click={changeType} class="type-switch">G</button>
-        <button on:click={addToTheRight} class="type-switch">H</button>
+        <button data-testid="add-parents-button" on:click={addParents} class="type-switch">P</button>
+        <button data-testid="change-type-button" on:click={changeType} class="type-switch">G</button>
+        <button data-testid="add-to-the-right-button" on:click={addToTheRight} class="type-switch">H</button>
     </div>
 </div>
 

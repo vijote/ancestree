@@ -1,5 +1,6 @@
 <script>
     import TreeComponent from "../components/TreeComponent.svelte";
+    import { provideBrowserDependencies } from "../entities/Dependencies";
 </script>
 
 <svelte:head>
@@ -16,4 +17,4 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<TreeComponent/>
+<TreeComponent getDependencies={provideBrowserDependencies}/>
