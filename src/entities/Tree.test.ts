@@ -75,7 +75,9 @@ describe('Tree', () => {
 
         const tree = Tree.initializeTree(provideTestDependencies());
 
-        const child = tree.generations[0].members.get("test-test-test-test-test1");
+        const child = tree.generations[0].members.find(member => member.id === "test-test-test-test-test1");
+
+        expect(child).toBeTruthy();
 
         tree.addParents(child!)();
 
@@ -84,7 +86,7 @@ describe('Tree', () => {
         expect(tree.generations[0].unions).toHaveLength(1);
 
         // New generation has 2 members
-        expect(tree.generations[0].members.size).toBe(2);
+        expect(tree.generations[0].members.length).toBe(2);
     });
   });
 });

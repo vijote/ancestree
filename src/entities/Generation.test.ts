@@ -42,8 +42,8 @@ describe('Generation', () => {
         children: [member]
       });
       
-      expect(generation.members instanceof Map).toBe(true);
-      expect(generation.members.get(mockedId)?.generation).toBe(generation);
+      expect(Array.isArray(generation.members)).toBe(true);
+      expect(generation.members.find(member => member.id === mockedId)?.generation).toBe(generation);
     });
 
     test("sets unions if provided", () => {
@@ -110,7 +110,7 @@ describe('Generation', () => {
 
       generation.addMember(newMember)();      
 
-      expect(generation.members.get(newMember.id)).toEqual(newMember)
+      expect(generation.members.find(member => member.id === newMember.id)).toEqual(newMember)
     });
   });
 

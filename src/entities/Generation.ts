@@ -15,7 +15,7 @@ class Generation {
     private dependencies: Dependencies;
 
     public readonly id: UUID;
-    public readonly members: Map<UUID, Member>;
+    public readonly members: Member[];
     public readonly unions: Union[] = [];
 
     public y: string = "0%";
@@ -40,18 +40,15 @@ class Generation {
     }
 
     private formatMembers(members: Member[]) {
-        const formattedMembers: [UUID, Member][] = [];
+        const formattedMembers = Array.from(members);
 
-        members.forEach(member => {
-            member.setGeneration(this);
-            formattedMembers.push([member.id, member]);
-        });
+        formattedMembers.forEach(member => member.setGeneration(this));
 
-        return new Map(formattedMembers);
+        return formattedMembers;
     }
 
     addMember = (newMember: Member) => () => {
-        this.members.set(newMember.id, newMember)
+        this.members.push(newMember);
     }
 
     setHeight(newHeight: number) {

@@ -47,7 +47,7 @@
         {/each}
 
         <!-- Members -->
-        {#each [...generation.members] as [_key, member]}
+        {#each [...generation.members] as member}
             <MemberComponent
                 changeType={setTree(member.changeType)}
                 addToTheRight={setTree(
