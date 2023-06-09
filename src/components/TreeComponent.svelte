@@ -12,10 +12,13 @@
     // Svelte components
     import MemberComponent from "./MemberComponent.svelte";
     import UnionComponent from "./UnionComponent.svelte";
-    import { provideBrowserDependencies } from "../entities/Dependencies";
+    import type { Dependencies } from "../entities/Dependencies";
 
-    // State getter    
-    let tree: Tree = Tree.initializeTree(provideBrowserDependencies());
+    // Props
+    export let getDependencies: () => Dependencies;
+
+    // State getter
+    let tree: Tree = Tree.initializeTree(getDependencies());
 
     // Store getter
     let zoomValue: number;
@@ -33,7 +36,7 @@
     };
 </script>
 
-<div class="container">
+<div data-testid="tree" class="container">
     {#each tree.generations as generation}
         <!-- Unions -->
         {#each generation.unions as union}

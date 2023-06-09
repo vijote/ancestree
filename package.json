@@ -8,7 +8,7 @@
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
 		"test:create-linkedom-environment": "pnpm link ../../vitest/vitest-environment-linkedom",
-  		"test:install-linkedom-environment": "pnpm link vitest-environment-linkedom",
+		"test:install-linkedom-environment": "pnpm link vitest-environment-linkedom",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
