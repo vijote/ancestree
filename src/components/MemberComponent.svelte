@@ -27,11 +27,9 @@
 
 <style>
     .member-container {
+        position: relative;
         height: var(--icon-size);
         width: var(--icon-size);
-        position: absolute;
-        left: var(--x-coord);
-        top: var(--y-coord);
     }
 
     .type-switch-container {
@@ -54,7 +52,7 @@
         display: flex;
         position: absolute;
         justify-content: space-between;
-        top: -30%;
+        top: -10%;
         left: 0%;
         right: 0%;
     }

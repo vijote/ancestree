@@ -8,7 +8,6 @@ export enum MemberType {
 };
 
 type MemberConstructorOptions = {
-    x: number,
     generation?: Generation,
     type?: MemberType,
     dependencies: Dependencies
@@ -17,17 +16,12 @@ type MemberConstructorOptions = {
 class Member {
     public readonly id: UUID;
     public type: MemberType = MemberType.Male;
-    public readonly formatted_x: string;
     public generation?: Generation;
     public static readonly icon_size = 20;
     public static readonly margin = 10;
     private dependencies: Dependencies;
 
-    public readonly x: number;
-
     constructor(options: MemberConstructorOptions) {
-        this.formatted_x = `${options.x}%`;
-        this.x = options.x;
         this.dependencies = options.dependencies;
         this.id = this.dependencies.generateId();        
 
@@ -39,10 +33,9 @@ class Member {
         this.type = this.type === MemberType.Female ? MemberType.Male : MemberType.Female;
     }
 
-    buildSiblingToTheRight = () => {
+    buildMember = () => {
         return new Member({
             dependencies: this.dependencies,
-            x: this.x + 35,
             generation: this.generation
         });
     };

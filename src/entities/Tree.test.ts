@@ -50,17 +50,13 @@ describe('Tree', () => {
   });
 
   describe("addGenerationUpwards", () => {
-    test("adds new generation and increases height of the existing ones", () => {
+    test("adds new generation", () => {
         const tree = Tree.initializeTree(provideTestDependencies());
 
-        tree.addGenerationUpwards(0);
+        tree.addGenerationUpwards();
 
         // Adds new generation
         expect(tree.generations).toHaveLength(2);
-        expect(tree.generations[0].height).toBe(0);
-
-        // Increases height of the existing one 
-        expect(tree.generations[1].height).toBe(1);
     });
   });
 
@@ -79,7 +75,7 @@ describe('Tree', () => {
 
         expect(child).toBeTruthy();
 
-        tree.addParents(child!)();
+        tree.addParents()();
 
         // Inserted new union and generation
         expect(tree.generations).toHaveLength(2);

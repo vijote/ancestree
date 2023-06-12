@@ -23,7 +23,7 @@ class Tree {
     static initializeTree(dependencies: Dependencies) {
         const generation = new Generation({
             dependencies: dependencies,
-            children: [new Member({ x: 25, dependencies: dependencies })],
+            children: [new Member({ dependencies: dependencies })],
         });
 
         return new Tree({
@@ -32,40 +32,36 @@ class Tree {
         });
     }
 
-    addParents = (member: Member) => () => {
-        const newGeneration = this.addGenerationUpwards(member.generation!.height);        
+    addParents = () => () => {
+        const newGeneration = this.addGenerationUpwards();        
 
         const father = new Member({
             dependencies: this.dependencies,
-            x: member.x - Math.round(Member.icon_size / 2),
             generation: newGeneration,
             type: MemberType.Male
         });
 
         const mother = new Member({
             dependencies: this.dependencies,
-            x: member.x + Math.round(member.x / 2),
             generation: newGeneration,
             type: MemberType.Female
         });        
 
-        newGeneration.addMember(father)();
-        newGeneration.addMember(mother)();
+        newGeneration.addMember(father);
+        newGeneration.addMember(mother);
 
         newGeneration.addUnion(new Union({
-            father,
-            mother
+            leftItemIndex: newGeneration.members.findIndex(member => member === father),
+            rightItemIndex: newGeneration.members.findIndex(member => member === mother)
         }));
     }
 
-    addGenerationUpwards = (height: number) => {
+    addGenerationUpwards = () => {
         const newGeneration = new Generation({
             dependencies: this.dependencies,
             children: [],
-            height
         })
 
-        this.generations.forEach(generation => generation.setHeight(generation.height + 1));
         this.generations.unshift(newGeneration);
 
         return newGeneration

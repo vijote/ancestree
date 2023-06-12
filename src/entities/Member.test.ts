@@ -23,11 +23,8 @@ describe('Member', () => {
     test("sets default properties", () => {
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 1
         });
 
-        expect(member.formatted_x).toBe(1 + "%");
-        expect(member.x).toBe(1);
         expect(member.id).toBe(mockedId);
     });
 
@@ -39,7 +36,6 @@ describe('Member', () => {
 
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 0,
             generation
         });
 
@@ -50,7 +46,6 @@ describe('Member', () => {
 
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 0,
             type: MemberType.Female
         });
 
@@ -62,7 +57,6 @@ describe('Member', () => {
     test("switches types from male to female", () => {
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 0,
             type: MemberType.Male
         });
         
@@ -74,7 +68,6 @@ describe('Member', () => {
     test("switches types from female to male", () => {
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 0,
             type: MemberType.Female
         });
         
@@ -88,12 +81,11 @@ describe('Member', () => {
     test("returns new member with the right x value", () => {
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 0
         });
 
-        const sibling = member.buildSiblingToTheRight();
+        const sibling = member.buildMember();
 
-        expect(sibling.x).toBe(member.x + 35);
+        expect(sibling instanceof Member).toBeTruthy();
     });
   });
 
@@ -101,7 +93,6 @@ describe('Member', () => {
     test("sets generation", () => {
         const member = new Member({
             dependencies: provideTestDependencies(),
-            x: 0
         });
 
         const generation = new Generation({
