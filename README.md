@@ -1,3 +1,6 @@
+-- Deprecated --
+See the new dygivira app with new features
+
 # Digyvira
 
 A simple tool to build your own family tree
